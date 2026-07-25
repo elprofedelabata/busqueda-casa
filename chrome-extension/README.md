@@ -15,15 +15,25 @@ Primer prototipo para capturar manualmente los datos de un anuncio inmobiliario.
 1. Abre la ficha de una vivienda en Idealista.
 2. Pulsa el icono de la extensión.
 3. Revisa y corrige los campos detectados.
-4. Pulsa **Descargar ficha JSON**.
+4. Pulsa **Enviar a la app**.
 
 La superficie se divide en anunciada, vivienda y garaje/anexos. El extractor
 prioriza la ficha técnica para la superficie anunciada y solo utiliza la
 descripción para detectar desgloses expresos.
 
 Fotocasa se reconoce como portal, pero su extractor específico todavía no está
-implementado. La conexión con GitHub se añadirá después de validar la extracción
-con varios anuncios reales.
+implementado.
+
+## Conexión con GitHub
+
+Abre los ajustes desde el engranaje de la extensión y configura un token
+personal *fine-grained*. Debe estar limitado al repositorio `busqueda-casa` y
+tener únicamente el permiso **Contents: Read and write**. El token se almacena
+en `chrome.storage.local` y nunca se escribe en el repositorio.
+
+Al enviar una vivienda, la extensión actualiza `data/offers.json`. Si la oferta
+ya existe se actualiza su ficha y, cuando cambia el precio, se conserva el
+anterior en `priceHistory`.
 
 ## Iconos
 

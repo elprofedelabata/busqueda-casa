@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configurar GitHub · Mi búsqueda de casa</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="../icons/icon-48.png" width="48" height="48" alt="">
+        <div>
+          <p class="eyebrow">MI BÚSQUEDA DE CASA</p>
+          <h1>Conexión con GitHub</h1>
+          <p class="subtitle">La configuración y el token se guardan únicamente en este perfil de Chrome.</p>
+        </div>
+      </header>
+
+      <section class="card instructions">
+        <h2>Antes de conectar</h2>
+        <ol>
+          <li>Crea un token personal <em>fine-grained</em> en GitHub.</li>
+          <li>Limítalo exclusivamente al repositorio <strong>busqueda-casa</strong>.</li>
+          <li>Concede únicamente <strong>Contents: Read and write</strong>.</li>
+        </ol>
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">
+          Crear token en GitHub ↗
+        </a>
+      </section>
+
+      <form id="configForm" class="card">
+        <div class="grid">
+          <label>
+            <span>Propietario</span>
+            <input id="owner" name="owner" required autocomplete="off">
+          </label>
+          <label>
+            <span>Repositorio</span>
+            <input id="repo" name="repo" required autocomplete="off">
+          </label>
+          <label>
+            <span>Rama</span>
+            <input id="branch" name="branch" required autocomplete="off">
+          </label>
+          <label>
+            <span>Ruta del archivo</span>
+            <input id="path" name="path" required autocomplete="off">
+          </label>
+        </div>
+
+        <label class="token-field">
+          <span>Token de GitHub</span>
+          <input id="token" name="token" type="password" required autocomplete="off" spellcheck="false">
+          <small>Nunca se incluye en el repositorio ni en las fichas de viviendas.</small>
+        </label>
+
+        <div id="status" class="status hidden" role="status"></div>
+
+        <footer>
+          <button id="saveConfigButton" type="submit">Comprobar y guardar</button>
+        </footer>
+      </form>
+    </main>
+    <script src="../services/github.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

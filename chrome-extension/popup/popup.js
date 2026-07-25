@@ -22,6 +22,10 @@ const fields = {
 const sourceBadge = document.querySelector("#sourceBadge");
 const errorMessage = document.querySelector("#errorMessage");
 const fieldSummary = document.querySelector("#fieldSummary");
+const saveButton = document.querySelector("#saveButton");
+const saveButtonLabel = document.querySelector("#saveButtonLabel");
+const successTitle = document.querySelector("#successTitle");
+const successMessage = document.querySelector("#successMessage");
 let extractedOffer = null;
 
 function showView(name) {
@@ -338,14 +342,40 @@ function extractOfferFromPage() {
   };
 }
 
-document.querySelector("#offerForm").addEventListener("submit", event => {
+document.querySelector("#offerForm").addEventListener("submit", async event => {
   event.preventDefault();
   const offer = makeOfferFromForm();
-  downloadJson(offer);
-  showView("success");
+
+  saveButton.disabled = true;
+  saveButtonLabel.textContent = "Enviando…";
+
+  try {
+    const config = await GitHubOffers.loadConfig();
+    if (!GitHubOffers.isConfigured(config)) {
+      await chrome.runtime.openOptionsPage();
+      throw new Error("Configura primero la conexión con GitHub. Hemos abierto la pantalla de ajustes.");
+    }
+
+    const result = await GitHubOffers.saveOffer(config, offer);
+    successTitle.textContent = result.created ? "Vivienda guardada" : "Vivienda actualizada";
+    successMessage.textContent = result.created
+      ? "La oferta se ha añadido correctamente a data/offers.json."
+      : "La ficha existente se ha actualizado sin crear un duplicado.";
+    showView("success");
+  } catch (error) {
+    errorMessage.textContent = error.message || "No hemos podido guardar la vivienda en GitHub.";
+    showView("error");
+  } finally {
+    saveButton.disabled = false;
+    saveButtonLabel.textContent = "Enviar a la app";
+  }
 });
 
 document.querySelector("#retryButton").addEventListener("click", readCurrentTab);
 document.querySelector("#saveAnotherButton").addEventListener("click", () => showView("form"));
+document.querySelector("#settingsButton").addEventListener("click", () => chrome.runtime.openOptionsPage());
+document.querySelector("#downloadButton").addEventListener("click", () => {
+  downloadJson(makeOfferFromForm());
+});
 
 readCurrentTab();
