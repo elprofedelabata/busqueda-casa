@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guardar vivienda</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <path d="M5 15.2 16 6l11 9.2v10.3a1.5 1.5 0 0 1-1.5 1.5h-19A1.5 1.5 0 0 1 5 25.5V15.2Z"/>
+            <path d="M12.5 27v-7.8h7V27"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">MI BÚSQUEDA DE CASA</p>
+          <h1>Guardar vivienda</h1>
+        </div>
+        <span id="sourceBadge" class="badge hidden"></span>
+      </header>
+
+      <section id="loadingView" class="state-view">
+        <span class="spinner" aria-hidden="true"></span>
+        <h2>Leyendo el anuncio…</h2>
+        <p>Solo analizamos esta pestaña cuando pulsas la extensión.</p>
+      </section>
+
+      <section id="errorView" class="state-view hidden">
+        <div class="state-icon error-icon" aria-hidden="true">!</div>
+        <h2>No hemos podido leer esta página</h2>
+        <p id="errorMessage"></p>
+        <button id="retryButton" class="secondary-button" type="button">Volver a intentarlo</button>
+      </section>
+
+      <form id="offerForm" class="hidden">
+        <div class="notice">
+          <span aria-hidden="true">✦</span>
+          <p>Revisa la información antes de guardarla. Podrás corregir cualquier campo.</p>
+        </div>
+
+        <label class="field full-width">
+          <span>Título</span>
+          <input id="title" name="title" type="text" required>
+        </label>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>Precio</span>
+            <div class="input-suffix">
+              <input id="price" name="price" type="number" min="0" step="1" inputmode="numeric">
+              <span>€</span>
+            </div>
+          </label>
+          <label class="field">
+            <span>Superficie anunciada</span>
+            <div class="input-suffix">
+              <input id="areaAdvertised" name="areaAdvertised" type="number" min="0" step="0.1" inputmode="decimal">
+              <span>m²</span>
+            </div>
+          </label>
+          <label class="field">
+            <span>Habitaciones</span>
+            <input id="rooms" name="rooms" type="number" min="0" step="1" inputmode="numeric">
+          </label>
+          <label class="field">
+            <span>Baños</span>
+            <input id="bathrooms" name="bathrooms" type="number" min="0" step="1" inputmode="numeric">
+          </label>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>Superficie vivienda</span>
+            <div class="input-suffix">
+              <input id="areaHousing" name="areaHousing" type="number" min="0" step="0.1" inputmode="decimal">
+              <span>m²</span>
+            </div>
+          </label>
+          <label class="field">
+            <span>Garaje / anexos</span>
+            <div class="input-suffix">
+              <input id="areaGarage" name="areaGarage" type="number" min="0" step="0.1" inputmode="decimal">
+              <span>m²</span>
+            </div>
+          </label>
+        </div>
+
+        <label class="field full-width">
+          <span>Zona</span>
+          <input id="location" name="location" type="text">
+        </label>
+
+        <details>
+          <summary>Más información</summary>
+          <div class="details-content">
+            <label class="field full-width">
+              <span>Descripción</span>
+              <textarea id="description" name="description" rows="5"></textarea>
+            </label>
+            <label class="field full-width">
+              <span>Características <small>(una por línea)</small></span>
+              <textarea id="features" name="features" rows="5"></textarea>
+            </label>
+            <label class="field full-width">
+              <span>Enlace original</span>
+              <input id="url" name="url" type="url" readonly>
+            </label>
+          </div>
+        </details>
+
+        <footer>
+          <p id="fieldSummary" class="field-summary"></p>
+          <button id="saveButton" class="primary-button" type="submit">
+            <span>Descargar ficha JSON</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </footer>
+      </form>
+
+      <section id="successView" class="state-view hidden">
+        <div class="state-icon success-icon" aria-hidden="true">✓</div>
+        <h2>Ficha preparada</h2>
+        <p>El archivo JSON se ha descargado. En el siguiente paso lo enviaremos directamente a la aplicación.</p>
+        <button id="saveAnotherButton" class="secondary-button" type="button">Volver a la ficha</button>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

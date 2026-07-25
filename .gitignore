@@ -1,0 +1,17 @@
+# Configuración local y credenciales
+.env
+.env.*
+*.token
+secrets.*
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencias y resultados temporales
+node_modules/
+dist/
+tmp/
+*.log
