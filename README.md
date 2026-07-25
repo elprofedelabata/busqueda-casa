@@ -8,13 +8,14 @@ seleccionados manualmente.
 - `chrome-extension/`: extensión de Chrome que captura el anuncio abierto y
   permite revisar sus datos.
 - `data/offers.json`: almacén inicial de ofertas que consumirá la aplicación.
-- `web-app/`: futura interfaz publicada mediante GitHub Pages.
+- `docs/`: interfaz web publicada mediante GitHub Pages.
 
 ## Estado
 
-La primera versión de la extensión extrae anuncios de Idealista, distingue
-superficie anunciada, vivienda y garaje/anexos, y permite descargar una ficha
-JSON. La conexión con GitHub y la aplicación web son los siguientes pasos.
+La extensión extrae anuncios de Idealista, distingue superficie anunciada,
+vivienda y garaje/anexos, y actualiza `data/offers.json`. La aplicación web
+muestra la selección, sus principales métricas y permite buscar, filtrar,
+ordenar y consultar cada ficha.
 
 ## Privacidad
 
