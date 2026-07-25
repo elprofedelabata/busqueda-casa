@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-25T17:11:58.369Z",
+  "updatedAt": "2026-07-25T17:25:09.581Z",
   "offers": [
     {
       "schemaVersion": 1,
@@ -38,6 +38,39 @@
       "description": "Vivienda de obra nueva entregada en verano de 2025, con 135 m² construidos más 38 m² de garaje. Orientación Norte/Sur/Este que aporta luz natural durante todo el día y ofrece vistas despejadas al río.Distribución interior: 3 dormitorios y 2 baños completos, uno de ellos en suite, además de una terraza.La cocina, instalada en octubre de 2025, está 100% equipada, al igual que los baños. La vivienda incorpora también termo eléctrico, suelos de tarima flotante y armarios empotrados en todas las habitaciones.Dispone de ventanas Climalit con rotura de puente térmico y preinstalación de aire acondicionado.La urbanización cuenta con piscina, jardín, pista de pádel y amplias zonas comunes.",
       "savedAt": "2026-07-25T17:11:58.366Z",
       "updatedAt": "2026-07-25T17:11:58.369Z"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "idealista-110815632",
+      "source": "idealista",
+      "sourceId": "110815632",
+      "url": "https://www.idealista.com/inmueble/110815632/",
+      "title": "Piso en venta en El Rinconcillo - San José Artesano",
+      "price": 180000,
+      "location": "Algeciras",
+      "propertyType": "piso",
+      "area": {
+        "advertised": 112,
+        "housing": 86,
+        "usable": null,
+        "garage": 26
+      },
+      "rooms": 4,
+      "bathrooms": 2,
+      "features": [
+        "112 m² construidos, 86 m² útiles",
+        "4 habitaciones",
+        "2 baños",
+        "Plaza de garaje incluida en el precio",
+        "Segunda mano/buen estado",
+        "No dispone de calefacción",
+        "2ª planta exterior",
+        "Con ascensor",
+        "Consumo:"
+      ],
+      "description": "Piso cuatro dormitorios en zona de La Granja, ideal para familias que buscan espacio, comodidad y una buena ubicación.La vivienda cuenta con salón comedor, cocina, cuatro dormitorios y dos baños completos, uno de ellos en suite en el dormitorio principal, aportando un plus de privacidad y confort.El piso disfruta de una excelente entrada de luz natural, creando un ambiente cálido y acogedor durante todo el día.Además incluye plaza de parking y trastero.Ubicado en una zona con todos los servicios a mano: comercios, colegios y zonas verdes.Informamos a nuestros clientes de que por mandato expreso del propietario comercializamos este inmueble en exclusiva y de que los gastos de notaría, registro, gestoría, impuestos y los honorarios de la agencia NO están incluidos en el precio. A su vez, disponemos del documento informativo abreviado de la propiedad (según decreto 218/2005, del 11 de octubre) y de seguro de caución, para la protección del dinero entregado como señal para la reserva de una vivienda.",
+      "savedAt": "2026-07-25T17:25:09.580Z",
+      "updatedAt": "2026-07-25T17:25:09.581Z"
     }
   ]
 }
