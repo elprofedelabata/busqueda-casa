@@ -1,5 +1,43 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "offers": []
+  "updatedAt": "2026-07-25T17:11:58.369Z",
+  "offers": [
+    {
+      "schemaVersion": 1,
+      "id": "idealista-112032331",
+      "source": "idealista",
+      "sourceId": "112032331",
+      "url": "https://www.idealista.com/inmueble/112032331/",
+      "title": "Piso en venta en Avenida del Embarcadero, 37",
+      "price": 249999,
+      "location": "El Rinconcillo - San José Artesano, Algeciras",
+      "propertyType": "piso",
+      "area": {
+        "advertised": 173,
+        "housing": 135,
+        "usable": null,
+        "garage": 38
+      },
+      "rooms": 3,
+      "bathrooms": 2,
+      "features": [
+        "173 m² construidos",
+        "3 habitaciones",
+        "2 baños",
+        "Terraza",
+        "Plaza de garaje incluida en el precio",
+        "Segunda mano/buen estado",
+        "Armarios empotrados",
+        "1ª planta exterior",
+        "Con ascensor",
+        "Piscina",
+        "Jardín",
+        "Consumo:",
+        "Emisiones:"
+      ],
+      "description": "Vivienda de obra nueva entregada en verano de 2025, con 135 m² construidos más 38 m² de garaje. Orientación Norte/Sur/Este que aporta luz natural durante todo el día y ofrece vistas despejadas al río.Distribución interior: 3 dormitorios y 2 baños completos, uno de ellos en suite, además de una terraza.La cocina, instalada en octubre de 2025, está 100% equipada, al igual que los baños. La vivienda incorpora también termo eléctrico, suelos de tarima flotante y armarios empotrados en todas las habitaciones.Dispone de ventanas Climalit con rotura de puente térmico y preinstalación de aire acondicionado.La urbanización cuenta con piscina, jardín, pista de pádel y amplias zonas comunes.",
+      "savedAt": "2026-07-25T17:11:58.366Z",
+      "updatedAt": "2026-07-25T17:11:58.369Z"
+    }
+  ]
 }
