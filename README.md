@@ -9,6 +9,7 @@ seleccionados manualmente.
   permite revisar sus datos.
 - `data/offers.json`: almacén inicial de ofertas que consumirá la aplicación.
 - `docs/`: interfaz web publicada mediante GitHub Pages.
+- `docs/hipoteca.html`: simulador hipotecario interactivo, sin dependencias y preparado para GitHub Pages.
 
 ## Estado
 
