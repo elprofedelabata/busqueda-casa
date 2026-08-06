@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simulador hipotecario educativo para comparar TIN, TAE, cuotas, bonificaciones y amortización.">
+    <meta name="theme-color" content="#174f3b">
+    <title>Laboratorio hipotecario · Mi búsqueda de casa</title>
+    <link rel="stylesheet" href="hipoteca.css">
+  </head>
+  <body>
+    <header class="mortgage-header">
+      <div class="mortgage-shell header-content">
+        <a class="mortgage-brand" href="./" aria-label="Volver a Mi búsqueda de casa">
+          <span class="brand-mark" aria-hidden="true"><i></i></span>
+          <span>
+            <strong>Mi búsqueda de casa</strong>
+            <small>Laboratorio hipotecario</small>
+          </span>
+        </a>
+        <nav aria-label="Navegación principal">
+          <a href="./">Viviendas</a>
+          <a href="#conceptos">TIN · TAE · FEIN</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mortgage-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">SIMULA · COMPARA · ENTIENDE</p>
+          <h1>Tu hipoteca,<br><em>sin letra pequeña.</em></h1>
+        </div>
+        <div class="hero-copy">
+          <p>Cambia cada dato y observa cómo se transforma la cuota, el coste total y la TAE. El ejemplo inicial reproduce las condiciones de tu captura.</p>
+          <span class="privacy-note">Todo se calcula en tu navegador. No se guarda ni se envía ningún dato.</span>
+        </div>
+      </section>
+
+      <section class="simulator-layout" aria-label="Simulador hipotecario">
+        <form id="simulatorForm" class="controls-card">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">TUS DATOS</p>
+              <h2>Ajusta el escenario</h2>
+            </div>
+            <button id="resetButton" class="text-button" type="button">Restaurar ejemplo</button>
+          </div>
+
+          <fieldset>
+            <legend><span>01</span> Vivienda y financiación</legend>
+            <div class="field-grid">
+              <label class="field">
+                <span>Precio de compraventa</span>
+                <span class="input-affix suffix">
+                  <input id="homePrice" name="homePrice" type="number" min="1" step="1000" value="250000" inputmode="decimal">
+                  <b>€</b>
+                </span>
+              </label>
+              <label class="field">
+                <span>Valor de tasación</span>
+                <span class="input-affix suffix">
+                  <input id="appraisalValue" name="appraisalValue" type="number" min="1" step="1000" value="250000" inputmode="decimal">
+                  <b>€</b>
+                </span>
+              </label>
+              <label class="field">
+                <span>Importe de la hipoteca</span>
+                <span class="input-affix suffix">
+                  <input id="loanAmount" name="loanAmount" type="number" min="1" step="1000" value="200000" inputmode="decimal">
+                  <b>€</b>
+                </span>
+              </label>
+              <label class="field">
+                <span>Plazo</span>
+                <span class="input-affix suffix">
+                  <input id="termYears" name="termYears" type="number" min="1" max="50" step="1" value="25" inputmode="numeric">
+                  <b>años</b>
+                </span>
+              </label>
+              <label class="field">
+                <span>Límite de financiación</span>
+                <span class="input-affix suffix">
+                  <input id="financeLimit" name="financeLimit" type="number" min="1" max="100" step="1" value="80" inputmode="decimal">
+                  <b>%</b>
+                </span>
+              </label>
+              <label class="field">
+                <span>Gastos de compraventa estimados</span>
+                <span class="input-affix suffix">
+                  <input id="purchaseCostsPercent" name="purchaseCostsPercent" type="number" min="0" max="40" step="0.1" value="10" inputmode="decimal">
+                  <b>%</b>
+                </span>
+              </label>
+            </div>
+            <p id="financingWarning" class="field-message" role="status"></p>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>02</span> Tipos de interés</legend>
+            <div class="scenario-inputs">
+              <label class="field scenario-field no-bonus-field">
+                <span>TIN sin bonificación</span>
+                <span class="input-affix suffix">
+                  <input id="standardTin" name="standardTin" type="number" min="0" max="30" step="0.01" value="3.95" inputmode="decimal">
+                  <b>%</b>
+                </span>
+              </label>
+              <label class="field scenario-field bonus-field">
+                <span>TIN con bonificación</span>
+                <span class="input-affix suffix">
+                  <input id="bonusTin" name="bonusTin" type="number" min="0" max="30" step="0.01" value="2.95" inputmode="decimal">
+                  <b>%</b>
+                </span>
+              </label>
+            </div>
+            <label class="check-field">
+              <input id="firstMonthBonus" name="firstMonthBonus" type="checkbox" checked>
+              <span class="check-mark" aria-hidden="true"></span>
+              <span>
+                <strong>Primer mes bonificado en ambos escenarios</strong>
+                <small>Así funciona el ejemplo de tu captura: el TIN sin bonificación empieza a aplicarse en el segundo mes.</small>
+              </span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>03</span> Costes que afectan a la TAE</legend>
+            <div class="field-grid">
+              <label class="field">
+                <span>Costes iniciales del préstamo</span>
+                <span class="input-affix suffix">
+                  <input id="upfrontCosts" name="upfrontCosts" type="number" min="0" step="10" value="400" inputmode="decimal">
+                  <b>€</b>
+                </span>
+              </label>
+              <span class="field spacer-field" aria-hidden="true"></span>
+              <label class="field scenario-field no-bonus-field">
+                <span>Costes anuales sin bonificación</span>
+                <span class="input-affix suffix">
+                  <input id="standardAnnualCosts" name="standardAnnualCosts" type="number" min="0" step="10" value="560" inputmode="decimal">
+                  <b>€/año</b>
+                </span>
+              </label>
+              <label class="field scenario-field bonus-field">
+                <span>Productos bonificadores al año</span>
+                <span class="input-affix suffix">
+                  <input id="bonusAnnualCosts" name="bonusAnnualCosts" type="number" min="0" step="10" value="840" inputmode="decimal">
+                  <b>€/año</b>
+                </span>
+              </label>
+            </div>
+            <p class="assumption-note"><strong>Supuesto didáctico:</strong> los costes iniciales y anuales aproximan las TAE de la captura. No son precios de BBVA. Sustitúyelos por los importes de tu FEIN cuando los tengas.</p>
+          </fieldset>
+        </form>
+
+        <div id="results" class="results-panel" aria-live="polite">
+          <div class="panel-heading results-heading">
+            <div>
+              <p class="eyebrow">RESULTADO</p>
+              <h2>Dos formas de financiar</h2>
+            </div>
+            <span id="calculationStatus" class="calculation-status">300 cuotas</span>
+          </div>
+
+          <div class="scenario-cards">
+            <article id="standardCard" class="scenario-card standard-card">
+              <div class="scenario-topline">
+                <span class="scenario-label">Sin bonificación</span>
+                <span id="standardTinBadge" class="rate-badge">3,95 % TIN</span>
+              </div>
+              <p class="quota-label">Cuota mensual</p>
+              <strong id="standardPayment" class="main-amount">1.049,85 €</strong>
+              <p id="standardFirstMonth" class="first-month-note">Primer mes: 943,23 €</p>
+              <dl class="scenario-metrics">
+                <div><dt>TAE estimada</dt><dd id="standardTae">4,47 %</dd></div>
+                <div><dt>Intereses</dt><dd id="standardInterest">114.847 €</dd></div>
+                <div><dt>Coste total*</dt><dd id="standardTotalCost">329.247 €</dd></div>
+              </dl>
+            </article>
+
+            <article id="bonusCard" class="scenario-card bonus-card">
+              <div class="scenario-topline">
+                <span class="scenario-label">Con bonificación</span>
+                <span id="bonusTinBadge" class="rate-badge">2,95 % TIN</span>
+              </div>
+              <p class="quota-label">Cuota mensual</p>
+              <strong id="bonusPayment" class="main-amount">943,23 €</strong>
+              <p id="bonusMonthlyProducts" class="first-month-note">+ 70 € al mes en productos</p>
+              <dl class="scenario-metrics">
+                <div><dt>TAE estimada</dt><dd id="bonusTae">3,69 %</dd></div>
+                <div><dt>Intereses</dt><dd id="bonusInterest">82.969 €</dd></div>
+                <div><dt>Coste total*</dt><dd id="bonusTotalCost">304.369 €</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <div id="comparisonCallout" class="comparison-callout">
+            <span class="callout-icon" aria-hidden="true">↘</span>
+            <div>
+              <small>Resultado de la comparación</small>
+              <strong id="comparisonHeadline">La bonificación ahorra 24.878 €</strong>
+              <p id="comparisonCopy">Incluyendo los productos indicados durante los 25 años.</p>
+            </div>
+          </div>
+
+          <div class="summary-strip">
+            <div>
+              <span>Financiación</span>
+              <strong id="ltvResult">80,0 %</strong>
+            </div>
+            <div>
+              <span>Aportación al precio</span>
+              <strong id="downPaymentResult">50.000 €</strong>
+            </div>
+            <div>
+              <span>Ahorro inicial estimado</span>
+              <strong id="cashNeededResult">75.400 €</strong>
+            </div>
+          </div>
+          <p class="results-footnote">* Suma de todas las cuotas, costes iniciales y costes periódicos introducidos. Los gastos de compraventa se muestran aparte.</p>
+        </div>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="chart-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">EVOLUCIÓN</p>
+              <h2>La deuda se hace pequeña</h2>
+            </div>
+            <div class="segmented-control" aria-label="Escenario del gráfico">
+              <button class="chart-toggle active" type="button" data-scenario="bonus" aria-pressed="true">Con bonificación</button>
+              <button class="chart-toggle" type="button" data-scenario="standard" aria-pressed="false">Sin bonificación</button>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="balanceChart" role="img" aria-label="Evolución anual del capital pendiente"></canvas>
+          </div>
+          <div class="chart-legend" aria-hidden="true">
+            <span><i class="legend-balance"></i> Capital pendiente</span>
+            <span><i class="legend-interest"></i> Intereses acumulados</span>
+          </div>
+        </article>
+
+        <article class="explanation-card">
+          <p class="eyebrow">LEE EL RESULTADO</p>
+          <h2>Cuota baja no siempre significa hipoteca barata.</h2>
+          <p>La bonificación reduce los intereses, pero añade productos. La comparación correcta descuenta del ahorro hipotecario todo lo que cuestan esos productos.</p>
+          <div class="equation-card">
+            <span>Ahorro neto</span>
+            <strong>Ahorro de cuotas − costes adicionales</strong>
+          </div>
+          <p id="breakEvenText" class="break-even-text">Con estos datos, los productos bonificadores podrían costar hasta 1.275 € al año antes de agotar el ahorro hipotecario bruto.</p>
+        </article>
+      </section>
+
+      <section class="table-card">
+        <div class="section-heading table-heading">
+          <div>
+            <p class="eyebrow">AÑO A AÑO</p>
+            <h2>Cuadro de amortización</h2>
+          </div>
+          <label class="compact-select">
+            <span>Escenario</span>
+            <select id="tableScenario">
+              <option value="bonus">Con bonificación</option>
+              <option value="standard">Sin bonificación</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Año</th>
+                <th>Saldo inicial</th>
+                <th>Cuotas</th>
+                <th>Intereses</th>
+                <th>Capital devuelto</th>
+                <th>Saldo final</th>
+              </tr>
+            </thead>
+            <tbody id="amortizationBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="conceptos" class="concepts-section">
+        <div class="section-heading concepts-heading">
+          <div>
+            <p class="eyebrow">TRES CONCEPTOS</p>
+            <h2>Qué mirar en cada momento</h2>
+          </div>
+          <p>El simulador te ayuda a experimentar. La FEIN será la que te permita decidir con cifras reales.</p>
+        </div>
+        <div class="concept-grid">
+          <article>
+            <span>01</span>
+            <h3>TIN</h3>
+            <strong>Calcula la cuota</strong>
+            <p>Es el precio nominal del dinero. Se aplica al capital que todavía debes.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>TAE</h3>
+            <strong>Compara ofertas</strong>
+            <p>Anualiza el interés y los costes introducidos para crear una medida comparable.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>FEIN</h3>
+            <strong>Confirma las condiciones</strong>
+            <p>Contiene la oferta personalizada: cuotas, costes, productos, comisiones y reglas.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="mortgage-shell footer-content">
+        <p><strong>Simulador educativo.</strong> No constituye asesoramiento financiero ni una oferta bancaria.</p>
+        <p>Contrasta siempre los resultados con la FEIN y el cuadro de amortización de la entidad.</p>
+      </div>
+    </footer>
+
+    <script src="hipoteca.js"></script>
+  </body>
+</html>
